@@ -2,13 +2,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Solver {
+public class Solver2 {
+    public static int total = 0;
+
     public static void main(String[] args) {
         // Reader
         try (BufferedReader reader = new BufferedReader(new FileReader("input.txt"))) {
             String line = reader.readLine();
             int currentPos = 50;
-            int count = 0;
 
             while (line != null) {
                 char direction = line.charAt(0);
@@ -16,12 +17,11 @@ public class Solver {
 
                 int nextPos = getNextPos(currentPos, moves, direction);
                 currentPos = nextPos;
-                if (nextPos == 0) count++;
 
                 line = reader.readLine();
             }
 
-            System.out.println(count);
+            System.out.println(total);
 
         } catch (IOException e) {
             System.out.println(e);
@@ -43,6 +43,8 @@ public class Solver {
                     currentPosition++;
                 }
             }
+
+            if (currentPosition == 0) total++;
         }
         return currentPosition;
     }
